@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "41497abb-5314-45c8-bcba-479316028317",
+		"name": "Central App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Body has Access Token\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");",
+							"});",
+							"",
+							"pm.test(\"Body has Refresh Token\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"refresh_token\");",
+							"});",
+							"",
+							"pm.test(\"Username Verification\", function () {",
+							"    var usernameVarification = \"Logged in as \" + pm.variables.get(\"username\");",
+							"    pm.expect(pm.response.text()).to.include(usernameVarification);",
+							"});",
+							"",
+							"pm.test(\"Setting Access Token\", function () {",
+							"    var accessToken = pm.response.json()['access_token'];",
+							"    pm.environment.set(\"access_token\", accessToken);",
+							"});",
+							"",
+							"pm.test(\"Setting Refersh Token\", function () {",
+							"    var refreshToken = pm.response.json()['refresh_token'];",
+							"    pm.environment.set(\"refresh_token\", refreshToken);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serviceURL}}/login",
+					"host": [
+						"{{serviceURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout Access",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/logout/access",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"logout",
+						"access"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout Refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{refresh_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/logout/refresh",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"logout",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Body has Access Token\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");",
+							"});",
+							"",
+							"pm.test(\"Body has Refresh Token\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"refresh_token\");",
+							"});",
+							"",
+							"pm.test(\"Setting Access Token\", function () {",
+							"    var accessToken = pm.response.json()['access_token'];",
+							"    pm.environment.set(\"access_token\", accessToken);",
+							"});",
+							"",
+							"pm.test(\"Setting Refersh Token\", function () {",
+							"    var refreshToken = pm.response.json()['refresh_token'];",
+							"    pm.environment.set(\"refresh_token\", refreshToken);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"hello2\",\n    \"password\": \"hello1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/registration",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Secrete",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5000/secret",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"secret"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "authService",
+			"value": "localhost:5000/login"
+		},
+		{
+			"key": "username",
+			"value": "hello"
+		},
+		{
+			"key": "password",
+			"value": "hello"
+		}
+	]
+}
