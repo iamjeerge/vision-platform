@@ -102,3 +102,19 @@ class SecretResource(Resource):
         return {
             'answer': 42
         }
+
+
+class VerifyUser(Resource):
+    @jwt_required
+    def post(self):
+        verify_parser = reqparse.RequestParser()
+        verify_parser.add_argument(
+            'password', help='This field cannot be blank', required=True)
+        data = verify_parser.parse_args()
+        current_user = UserModel.find_by_username(get_jwt_identity())
+        if UserModel.verify_hash(data['password'], current_user.password):
+            return {
+                'msg': 'Valid Password for {} user'.format(current_user.username),
+            }
+        else:
+            return {'msg': 'Wrong credentials'}
