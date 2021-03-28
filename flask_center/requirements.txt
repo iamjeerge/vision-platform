@@ -1,6 +1,6 @@
 aniso8601==8.1.0
 appnope==0.1.2
-autopep8==1.5.4
+autopep8==1.5.6
 backcall==0.2.0
 click==7.1.2
 decorator==4.4.2
