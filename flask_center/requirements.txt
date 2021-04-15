@@ -23,7 +23,7 @@ pickleshare==0.7.5
 prompt-toolkit==3.0.8
 ptyprocess==0.6.0
 pycodestyle==2.6.0
-Pygments==2.7.4
+Pygments==2.8.1
 PyJWT==1.7.1
 pytz==2021.1
 six==1.15.0
