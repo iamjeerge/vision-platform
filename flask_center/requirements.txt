@@ -24,7 +24,7 @@ prompt-toolkit==3.0.18
 ptyprocess==0.7.0
 pycodestyle==2.7.0
 Pygments==2.8.1
-PyJWT==2.0.1
+PyJWT==2.4.0
 pytz==2021.1
 six==1.15.0
 SQLAlchemy==1.4.8
