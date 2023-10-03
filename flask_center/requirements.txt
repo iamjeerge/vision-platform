@@ -5,7 +5,7 @@ backcall==0.2.0
 click==7.1.2
 decorator==5.0.7
 Flask==1.1.2
-Flask-JWT-Extended==4.1.0
+Flask-JWT-Extended==4.5.3
 Flask-Login==0.5.0
 Flask-RESTful==0.3.8
 Flask-SQLAlchemy==2.5.1
