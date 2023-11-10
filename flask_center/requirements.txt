@@ -20,7 +20,7 @@ parso==0.8.2
 passlib==1.7.4
 pexpect==4.8.0
 pickleshare==0.7.5
-prompt-toolkit==3.0.18
+prompt-toolkit==3.0.40
 ptyprocess==0.7.0
 pycodestyle==2.7.0
 Pygments==2.8.1
